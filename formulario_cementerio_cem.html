@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Ingreso - Cementerio Municipal | CEM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Barlow:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-cem: #0F2744;
+            --azul-cem-medio: #1A3D5C;
+            --azul-cem-palido: #E8EEF4;
+            --azul-esquina: #3AAEE0;
+            --verde: #6CBF6A;
+            --amarillo: #F5C842;
+            --rojo: #E05C4A;
+            --fondo: #F4F7FA;
+            --superficie: #FFFFFF;
+            --borde: #C8D6E2;
+            --texto: #1A2D3D;
+            --texto-secundario: #5A7387;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background-color: var(--fondo);
+            color: var(--texto);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        .form-container {
+            background: var(--superficie);
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(15, 39, 68, 0.08);
+            max-width: 680px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: var(--azul-cem);
+            padding: 32px 40px;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--azul-esquina);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .org-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.12);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.85);
+        }
+
+        .org-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--verde);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .header h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 32px;
+            color: #fff;
+            line-height: 1.1;
+            letter-spacing: -0.5px;
+        }
+
+        .header-subtitle {
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            font-size: 15px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 8px;
+        }
+
+        .header-meta {
+            display: flex;
+            gap: 24px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .meta-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .meta-value {
+            font-family: 'DM Mono', monospace;
+            font-weight: 500;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        /* Form Body */
+        .form-body {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 36px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--azul-cem);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--azul-cem-palido);
+        }
+
+        .section-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--azul-cem-palido);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--texto);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .required {
+            color: var(--rojo);
+            font-weight: 700;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
+            font-family: 'Barlow', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--texto);
+            padding: 12px 16px;
+            border: 2px solid var(--borde);
+            border-radius: 8px;
+            background: var(--superficie);
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        input[type="date"],
+        input[type="time"] {
+            font-family: 'DM Mono', monospace;
+            font-weight: 500;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--azul-esquina);
+            box-shadow: 0 0 0 4px rgba(58, 174, 224, 0.12);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--texto-secundario);
+            font-weight: 400;
+        }
+
+        .input-hint {
+            font-size: 12px;
+            color: var(--texto-secundario);
+            margin-top: 2px;
+        }
+
+        /* Checkbox */
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--azul-cem-palido);
+            border-radius: 8px;
+            border: 1px solid var(--borde);
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--azul-cem);
+            cursor: pointer;
+            margin-top: 2px;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--texto);
+            line-height: 1.4;
+        }
+
+        .checkbox-label small {
+            display: block;
+            color: var(--texto-secundario);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* Footer / Actions */
+        .form-footer {
+            padding: 24px 40px;
+            background: var(--azul-cem-palido);
+            border-top: 1px solid var(--borde);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            font-family: 'Barlow', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--azul-cem);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--azul-cem-medio);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(15, 39, 68, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--texto-secundario);
+            border: 2px solid var(--borde);
+        }
+
+        .btn-secondary:hover {
+            background: var(--superficie);
+            border-color: var(--azul-esquina);
+            color: var(--azul-cem);
+        }
+
+        .footer-info {
+            font-size: 12px;
+            color: var(--texto-secundario);
+            text-align: right;
+        }
+
+        .footer-info strong {
+            color: var(--azul-cem);
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+            }
+            .form-container {
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .header, .form-body, .form-footer {
+                padding: 24px 20px;
+            }
+            .header h1 {
+                font-size: 26px;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-footer {
+                flex-direction: column-reverse;
+            }
+            .footer-info {
+                text-align: center;
+            }
+        }
+
+        /* Validation states */
+        input:invalid:not(:placeholder-shown) {
+            border-color: var(--rojo);
+        }
+        input:valid:not(:placeholder-shown) {
+            border-color: var(--verde);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-top">
+                <div class="org-badge">
+                    <span class="dot"></span>
+                    CEM · Municipalidad de Esquina
+                </div>
+            </div>
+            <h1>Registro de Ingreso al Cementerio</h1>
+            <p class="header-subtitle">Centro Estadístico Municipal — Corrientes, Argentina</p>
+            <div class="header-meta">
+                <div class="meta-item">
+                    <span class="meta-label">N° de Trámite</span>
+                    <span class="meta-value" id="tramite-id">CEM-2026-0001</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Fecha de Registro</span>
+                    <span class="meta-value" id="fecha-registro">16/06/2026</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Body -->
+        <form class="form-body" onsubmit="event.preventDefault(); alert('Formulario enviado correctamente.');">
+            <!-- Sección: Datos del Deceso -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🕊️</span>
+                    Datos del Deceso
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nombre-deceso">Nombre <span class="required">*</span></label>
+                        <input type="text" id="nombre-deceso" name="nombre_deceso" placeholder="Ej: Juan Carlos" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido-deceso">Apellido <span class="required">*</span></label>
+                        <input type="text" id="apellido-deceso" name="apellido_deceso" placeholder="Ej: Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dni-deceso">DNI / Documento</label>
+                        <input type="text" id="dni-deceso" name="dni_deceso" placeholder="Ej: 25.456.789" pattern="[0-9.\-]*">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha-nacimiento">Fecha de Nacimiento</label>
+                        <input type="date" id="fecha-nacimiento" name="fecha_nacimiento">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="fecha-ingreso">Fecha de Ingreso <span class="required">*</span></label>
+                        <input type="date" id="fecha-ingreso" name="fecha_ingreso" required>
+                        <span class="input-hint">Fecha en que se realiza el ingreso al cementerio municipal.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora-ingreso">Hora de Ingreso</label>
+                        <input type="time" id="hora-ingreso" name="hora_ingreso">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo-servicio">Tipo de Servicio</label>
+                        <select id="tipo-servicio" name="tipo_servicio">
+                            <option value="" disabled selected>Seleccionar...</option>
+                            <option value="inhumacion">Inhumación</option>
+                            <option value="exhumacion">Exhumación</option>
+                            <option value="traslado">Traslado</option>
+                            <option value="cremacion">Cremación</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección: Datos del Solicitante -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">👤</span>
+                    Datos de quien registra el trámite
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nombre-solicitante">Nombre <span class="required">*</span></label>
+                        <input type="text" id="nombre-solicitante" name="nombre_solicitante" placeholder="Ej: María Elena" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido-solicitante">Apellido <span class="required">*</span></label>
+                        <input type="text" id="apellido-solicitante" name="apellido_solicitante" placeholder="Ej: González" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dni-solicitante">DNI</label>
+                        <input type="text" id="dni-solicitante" name="dni_solicitante" placeholder="Ej: 30.123.456" pattern="[0-9.\-]*">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono-solicitante">Teléfono de contacto</label>
+                        <input type="text" id="telefono-solicitante" name="telefono_solicitante" placeholder="Ej: 3777-123456">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="parentesco">Parentesco o relación con el deceso</label>
+                        <input type="text" id="parentesco" name="parentesco" placeholder="Ej: Esposa, Hijo, Hermano, etc.">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confirmación -->
+            <div class="section">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="confirmacion" name="confirmacion" required>
+                    <label for="confirmacion" class="checkbox-label">
+                        Declaro que la información proporcionada es veraz y completa.
+                        <small>Los datos registrados serán utilizados exclusivamente para fines estadísticos y administrativos del Centro Estadístico Municipal.</small>
+                    </label>
+                </div>
+            </div>
+        </form>
+
+        <!-- Footer Actions -->
+        <div class="form-footer">
+            <button type="button" class="btn btn-secondary" onclick="document.querySelector('form').reset();">
+                🔄 Limpiar formulario
+            </button>
+            <div class="footer-info">
+                <strong>CEM</strong> — Centro Estadístico Municipal<br>
+                Municipalidad de Esquina, Corrientes
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="document.querySelector('form').dispatchEvent(new Event('submit'))">
+                ✅ Registrar trámite
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Auto-fill fecha de registro
+        const today = new Date();
+        document.getElementById('fecha-registro').textContent = today.toLocaleDateString('es-AR', {
+            day: '2-digit', month: '2-digit', year: 'numeric'
+        });
+
+        // Auto-generate tramite ID
+        const year = today.getFullYear();
+        const random = String(Math.floor(Math.random() * 9000) + 1000);
+        document.getElementById('tramite-id').textContent = `CEM-${year}-${random}`;
+    </script>
+</body>
+</html>
