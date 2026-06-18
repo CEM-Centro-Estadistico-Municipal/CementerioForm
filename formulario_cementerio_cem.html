@@ -451,6 +451,52 @@
 
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* ── SIN DATOS ───────────────────────────────────── */
+        .sin-datos-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .btn-sin-datos {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 4px;
+            border: 1px solid var(--cem-ocre);
+            background: var(--cem-ocre-pale);
+            color: var(--cem-ocre);
+            cursor: pointer;
+            transition: all 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: 0.2px;
+        }
+
+        .btn-sin-datos svg { width: 13px; height: 13px; stroke-width: 1.75; }
+
+        .btn-sin-datos:hover {
+            background: var(--cem-ocre);
+            color: #fff;
+            border-color: var(--cem-ocre);
+        }
+
+        .btn-sin-datos.activo {
+            background: var(--cem-ocre);
+            color: #fff;
+        }
+
+        .seccion-solicitante.deshabilitada input,
+        .seccion-solicitante.deshabilitada select {
+            background: var(--cem-papel);
+            color: var(--cem-secundario);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
         /* ── RESPONSIVE ──────────────────────────────────── */
         @media (max-width: 580px) {
             body { padding: 0 0 48px; }
@@ -535,18 +581,44 @@
                             <option value="cremacion">Cremación</option>
                         </select>
                     </div>
+                    <div class="form-group full-width">
+                        <label for="ubicacion">Ubicación en el cementerio</label>
+                        <input type="text" id="ubicacion" name="ubicacion"
+                               placeholder="Ej: Público · Lote 12 · Fila 3 · Sepultura 5"
+                               list="ubicacion-sugerencias"
+                               autocomplete="off">
+                        <datalist id="ubicacion-sugerencias">
+                            <option value="Público">
+                            <option value="Privado">
+                            <option value="Nicho">
+                            <option value="Osario">
+                            <option value="Bóveda">
+                            <option value="Bóveda familiar">
+                            <option value="Sector municipal">
+                            <option value="Público · Lote ">
+                            <option value="Privado · Lote ">
+                        </datalist>
+                        <span class="input-hint">Indicá sector (público/privado), lote, fila y número de sepultura si corresponde.</span>
+                    </div>
                 </div>
             </div>
 
             <!-- Sección 2: Datos de quien registra -->
             <div class="section">
-                <div class="section-title">
-                    <span class="section-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </span>
-                    Datos de quien registra el trámite
+                <div class="sin-datos-bar">
+                    <div class="section-title" style="margin-bottom:0;padding-bottom:0;border-bottom:none;flex:1">
+                        <span class="section-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </span>
+                        Datos de quien registra el trámite
+                    </div>
+                    <button type="button" class="btn-sin-datos" id="btn-sin-datos" onclick="toggleSinDatos()">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+                        Sin datos
+                    </button>
                 </div>
-                <div class="form-grid">
+                <div style="border-bottom:1px solid var(--cem-borde);margin:12px 0 20px"></div>
+                <div class="form-grid seccion-solicitante" id="seccion-solicitante">
                     <div class="form-group">
                         <label for="nombre-solicitante">Nombre <span class="required">*</span></label>
                         <input type="text" id="nombre-solicitante" name="nombre_solicitante" placeholder="Ej: María Elena" required>
@@ -567,7 +639,7 @@
                         <label for="parentesco">Parentesco o relación con el deceso</label>
                         <input type="text" id="parentesco" name="parentesco" placeholder="Ej: Esposa, Hijo, Hermano...">
                     </div>
-                </div>
+                </div><!-- /seccion-solicitante -->
             </div>
 
             <!-- Confirmación -->
@@ -668,7 +740,9 @@
                 apellido_solicitante: form.apellido_solicitante.value.trim(),
                 dni_solicitante:      form.dni_solicitante.value.trim(),
                 telefono_solicitante: form.telefono_solicitante.value.trim(),
-                parentesco:           form.parentesco.value.trim()
+                parentesco:           form.parentesco.value.trim(),
+                ubicacion:            form.ubicacion.value.trim(),
+                sin_datos_solicitante: document.getElementById('btn-sin-datos').classList.contains('activo') ? 'SIN DATOS' : ''
             };
 
             try {
@@ -739,6 +813,44 @@
         document.getElementById('overlay').addEventListener('click', function(e) {
             if (e.target === this) cerrarOverlay();
         });
+
+        function toggleSinDatos() {
+            const btn = document.getElementById('btn-sin-datos');
+            const seccion = document.getElementById('seccion-solicitante');
+            const campos = seccion.querySelectorAll('input, select');
+            const activando = !btn.classList.contains('activo');
+
+            btn.classList.toggle('activo', activando);
+            seccion.classList.toggle('deshabilitada', activando);
+
+            campos.forEach(campo => {
+                if (activando) {
+                    campo.dataset.requiredOrig = campo.required ? '1' : '';
+                    campo.required = false;
+                    campo.value = '';
+                    campo.disabled = true;
+                } else {
+                    campo.disabled = false;
+                    if (campo.dataset.requiredOrig === '1') campo.required = true;
+                }
+            });
+        }
+
+        // Asegurarse de resetear también el estado sin-datos al limpiar
+        const _limpiarOrig = limpiarFormulario;
+        limpiarFormulario = function() {
+            const btn = document.getElementById('btn-sin-datos');
+            const seccion = document.getElementById('seccion-solicitante');
+            if (btn.classList.contains('activo')) {
+                btn.classList.remove('activo');
+                seccion.classList.remove('deshabilitada');
+                seccion.querySelectorAll('input, select').forEach(c => {
+                    c.disabled = false;
+                    if (c.dataset.requiredOrig === '1') c.required = true;
+                });
+            }
+            _limpiarOrig();
+        };
     </script>
 </body>
 </html>
