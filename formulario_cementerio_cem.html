@@ -3,196 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Ingreso - Cementerio Municipal | CEM</title>
+    <title>Registro de Ingreso — Cementerio Municipal | CEM Esquina</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Barlow:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
         :root {
-            --azul-cem: #0F2744;
-            --azul-cem-medio: #1A3D5C;
-            --azul-cem-palido: #E8EEF4;
-            --azul-esquina: #3AAEE0;
-            --verde: #6CBF6A;
-            --amarillo: #F5C842;
-            --rojo: #E05C4A;
-            --fondo: #F4F7FA;
-            --superficie: #FFFFFF;
-            --borde: #C8D6E2;
-            --texto: #1A2D3D;
-            --texto-secundario: #5A7387;
+            --cem-azul:       #0e5a9e;
+            --cem-azul-dark:  #0a4578;
+            --cem-azul-pale:  #ddeaf6;
+            --cem-ocre:       #b8863d;
+            --cem-ocre-pale:  #f5ead6;
+            --cem-papel:      #f8f5ee;
+            --cem-borde:      #d6cebd;
+            --cem-texto:      #1a1a1a;
+            --cem-secundario: #5a5348;
+            --cem-error:      #c0392b;
+            --cem-ok:         #1e7d45;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Barlow', sans-serif;
-            background-color: var(--fondo);
-            color: var(--texto);
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: var(--cem-papel);
+            color: var(--cem-texto);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding: 40px 20px;
+            padding: 40px 20px 64px;
         }
 
         .form-container {
-            background: var(--superficie);
-            border-radius: 12px;
-            box-shadow: 0 4px 24px rgba(15, 39, 68, 0.08);
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--cem-borde);
+            box-shadow: 0 2px 16px rgba(14, 90, 158, 0.07);
             max-width: 680px;
             width: 100%;
             overflow: hidden;
         }
 
-        /* Header */
+        /* ── HEADER ─────────────────────────────────────── */
         .header {
-            background: var(--azul-cem);
-            padding: 32px 40px;
+            background: var(--cem-azul);
+            padding: 28px 36px 24px;
             position: relative;
         }
 
         .header::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--azul-esquina);
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--cem-ocre);
         }
 
-        .header-top {
+        .header-brand {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-        }
-
-        .org-badge {
-            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.12);
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 12px;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .brand-sigla {
+            font-family: 'IBM Plex Serif', serif;
             font-weight: 600;
+            font-size: 15px;
+            color: #fff;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 4px;
+            padding: 3px 9px;
             letter-spacing: 0.5px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.85);
         }
 
-        .org-badge .dot {
-            width: 8px;
-            height: 8px;
-            background: var(--verde);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
+        .brand-sep {
+            width: 1px;
+            height: 16px;
+            background: rgba(255,255,255,0.25);
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        .brand-name {
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 0.3px;
         }
 
         .header h1 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 900;
-            font-size: 32px;
+            font-family: 'IBM Plex Serif', serif;
+            font-weight: 600;
+            font-size: 26px;
             color: #fff;
-            line-height: 1.1;
-            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 4px;
         }
 
         .header-subtitle {
-            font-family: 'Barlow', sans-serif;
+            font-size: 13px;
             font-weight: 400;
-            font-size: 15px;
-            color: rgba(255,255,255,0.7);
-            margin-top: 8px;
+            color: rgba(255,255,255,0.65);
         }
 
         .header-meta {
             display: flex;
-            gap: 24px;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            gap: 28px;
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.12);
         }
 
         .meta-item {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 3px;
         }
 
         .meta-label {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.9px;
+            color: rgba(255,255,255,0.45);
         }
 
         .meta-value {
-            font-family: 'DM Mono', monospace;
+            font-family: 'IBM Plex Mono', monospace;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 13px;
             color: #fff;
+            font-variant-numeric: tabular-nums;
         }
 
-        /* Form Body */
+        /* ── FORM BODY ───────────────────────────────────── */
         .form-body {
-            padding: 40px;
+            padding: 36px;
         }
 
         .section {
-            margin-bottom: 36px;
+            margin-bottom: 32px;
         }
 
-        .section:last-child {
-            margin-bottom: 0;
-        }
+        .section:last-child { margin-bottom: 0; }
 
         .section-title {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-weight: 800;
-            font-size: 18px;
-            color: var(--azul-cem);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--cem-azul);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--azul-cem-palido);
+            gap: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--cem-borde);
         }
 
         .section-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--azul-cem-palido);
-            border-radius: 8px;
+            width: 28px;
+            height: 28px;
+            background: var(--cem-azul-pale);
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            color: var(--cem-azul);
+            flex-shrink: 0;
+        }
+
+        .section-icon svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 1.75;
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 18px;
         }
 
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
         }
 
         .form-group.full-width {
@@ -200,99 +199,118 @@
         }
 
         label {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            color: var(--texto);
+            color: var(--cem-texto);
             display: flex;
             align-items: center;
             gap: 4px;
+            letter-spacing: 0.2px;
         }
 
         .required {
-            color: var(--rojo);
+            color: var(--cem-error);
             font-weight: 700;
+            font-size: 13px;
         }
 
         input[type="text"],
         input[type="date"],
         input[type="time"],
-        select,
-        textarea {
-            font-family: 'Barlow', sans-serif;
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--texto);
-            padding: 12px 16px;
-            border: 2px solid var(--borde);
-            border-radius: 8px;
-            background: var(--superficie);
-            transition: all 0.2s ease;
+        select {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--cem-texto);
+            padding: 10px 13px;
+            border: 1px solid var(--cem-borde);
+            border-radius: 4px;
+            background: #fff;
+            transition: border-color 0.15s, box-shadow 0.15s;
             outline: none;
+            width: 100%;
         }
 
         input[type="date"],
         input[type="time"] {
-            font-family: 'DM Mono', monospace;
-            font-weight: 500;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            font-variant-numeric: tabular-nums;
         }
 
         input:focus,
-        select:focus,
-        textarea:focus {
-            border-color: var(--azul-esquina);
-            box-shadow: 0 0 0 4px rgba(58, 174, 224, 0.12);
+        select:focus {
+            border-color: var(--cem-azul);
+            box-shadow: 0 0 0 3px rgba(14, 90, 158, 0.1);
         }
 
-        input::placeholder,
-        textarea::placeholder {
-            color: var(--texto-secundario);
+        input::placeholder {
+            color: #b0a898;
             font-weight: 400;
         }
 
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%235a5348' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 13px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
         .input-hint {
-            font-size: 12px;
-            color: var(--texto-secundario);
+            font-size: 11px;
+            color: var(--cem-secundario);
             margin-top: 2px;
         }
 
-        /* Checkbox */
+        /* Validation */
+        input:invalid:not(:placeholder-shown):not(:focus) {
+            border-color: var(--cem-error);
+        }
+
+        /* ── CHECKBOX ────────────────────────────────────── */
         .checkbox-group {
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            padding: 16px;
-            background: var(--azul-cem-palido);
-            border-radius: 8px;
-            border: 1px solid var(--borde);
+            padding: 14px 16px;
+            background: var(--cem-papel);
+            border-radius: 4px;
+            border: 1px solid var(--cem-borde);
         }
 
         .checkbox-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            accent-color: var(--azul-cem);
+            width: 17px;
+            height: 17px;
+            accent-color: var(--cem-azul);
             cursor: pointer;
-            margin-top: 2px;
+            margin-top: 1px;
+            flex-shrink: 0;
         }
 
         .checkbox-label {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
-            color: var(--texto);
-            line-height: 1.4;
+            color: var(--cem-texto);
+            line-height: 1.5;
+            cursor: pointer;
         }
 
         .checkbox-label small {
             display: block;
-            color: var(--texto-secundario);
-            font-size: 12px;
-            margin-top: 4px;
+            color: var(--cem-secundario);
+            font-size: 11px;
+            font-weight: 400;
+            margin-top: 3px;
+            line-height: 1.4;
         }
 
-        /* Footer / Actions */
+        /* ── FOOTER ──────────────────────────────────────── */
         .form-footer {
-            padding: 24px 40px;
-            background: var(--azul-cem-palido);
-            border-top: 1px solid var(--borde);
+            padding: 20px 36px;
+            background: var(--cem-papel);
+            border-top: 1px solid var(--cem-borde);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -300,119 +318,186 @@
         }
 
         .btn {
-            font-family: 'Barlow', sans-serif;
-            font-size: 15px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 13px;
             font-weight: 600;
-            padding: 14px 28px;
-            border-radius: 8px;
+            padding: 10px 22px;
+            border-radius: 4px;
             border: none;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 7px;
+            letter-spacing: 0.2px;
         }
 
+        .btn svg { width: 15px; height: 15px; stroke-width: 1.75; }
+
         .btn-primary {
-            background: var(--azul-cem);
+            background: var(--cem-azul);
             color: #fff;
         }
 
         .btn-primary:hover {
-            background: var(--azul-cem-medio);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(15, 39, 68, 0.25);
+            background: var(--cem-azul-dark);
+            box-shadow: 0 2px 8px rgba(14, 90, 158, 0.25);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            box-shadow: none;
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--texto-secundario);
-            border: 2px solid var(--borde);
+            color: var(--cem-secundario);
+            border: 1px solid var(--cem-borde);
         }
 
         .btn-secondary:hover {
-            background: var(--superficie);
-            border-color: var(--azul-esquina);
-            color: var(--azul-cem);
+            background: #fff;
+            border-color: var(--cem-azul);
+            color: var(--cem-azul);
         }
 
         .footer-info {
-            font-size: 12px;
-            color: var(--texto-secundario);
-            text-align: right;
+            font-size: 11px;
+            color: var(--cem-secundario);
+            text-align: center;
+            line-height: 1.4;
         }
 
         .footer-info strong {
-            color: var(--azul-cem);
+            color: var(--cem-azul);
+        }
+
+        /* ── OVERLAY ─────────────────────────────────────── */
+        .submit-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 30, 50, 0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .submit-overlay.active { display: flex; }
+
+        .submit-card {
+            background: #fff;
+            border-radius: 8px;
+            border: 1px solid var(--cem-borde);
+            padding: 40px 44px;
+            text-align: center;
+            max-width: 360px;
+            width: 90%;
+            box-shadow: 0 8px 40px rgba(10, 30, 50, 0.2);
+        }
+
+        .overlay-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+        }
+
+        .overlay-icon svg { width: 24px; height: 24px; stroke-width: 1.75; }
+        .overlay-icon.ok { background: #e6f5ec; color: var(--cem-ok); }
+        .overlay-icon.error { background: #fdecea; color: var(--cem-error); }
+
+        .submit-card h2 {
+            font-family: 'IBM Plex Serif', serif;
             font-weight: 600;
+            font-size: 20px;
+            color: var(--cem-texto);
+            margin-bottom: 8px;
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            body {
-                padding: 0;
-            }
-            .form-container {
-                border-radius: 0;
-                box-shadow: none;
-            }
-            .header, .form-body, .form-footer {
-                padding: 24px 20px;
-            }
-            .header h1 {
-                font-size: 26px;
-            }
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            .form-footer {
-                flex-direction: column-reverse;
-            }
-            .footer-info {
-                text-align: center;
-            }
+        .submit-card p {
+            font-size: 13px;
+            color: var(--cem-secundario);
+            line-height: 1.55;
         }
 
-        /* Validation states */
-        input:invalid:not(:placeholder-shown) {
-            border-color: var(--rojo);
+        .tramite-confirmado {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--cem-azul);
+            background: var(--cem-azul-pale);
+            border-radius: 4px;
+            padding: 7px 14px;
+            display: inline-block;
+            margin: 14px 0 4px;
+            letter-spacing: 1px;
+            font-variant-numeric: tabular-nums;
         }
-        input:valid:not(:placeholder-shown) {
-            border-color: var(--verde);
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--cem-azul-pale);
+            border-top-color: var(--cem-azul);
+            border-radius: 50%;
+            animation: spin 0.75s linear infinite;
+            margin: 0 auto 18px;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── RESPONSIVE ──────────────────────────────────── */
+        @media (max-width: 580px) {
+            body { padding: 0 0 48px; }
+            .form-container { border-radius: 0; border-left: 0; border-right: 0; box-shadow: none; }
+            .header, .form-body, .form-footer { padding-left: 20px; padding-right: 20px; }
+            .header h1 { font-size: 22px; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-footer { flex-direction: column-reverse; gap: 12px; }
+            .footer-info { text-align: center; }
+            .btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
     <div class="form-container">
+
         <!-- Header -->
         <div class="header">
-            <div class="header-top">
-                <div class="org-badge">
-                    <span class="dot"></span>
-                    CEM · Municipalidad de Esquina
-                </div>
+            <div class="header-brand">
+                <span class="brand-sigla">CEM</span>
+                <span class="brand-sep"></span>
+                <span class="brand-name">Centro Estadístico Municipal · Municipalidad de Esquina</span>
             </div>
-            <h1>Registro de Ingreso al Cementerio</h1>
-            <p class="header-subtitle">Centro Estadístico Municipal — Corrientes, Argentina</p>
+            <h1>Registro de ingreso al cementerio</h1>
+            <p class="header-subtitle">Corrientes, Argentina</p>
             <div class="header-meta">
                 <div class="meta-item">
-                    <span class="meta-label">N° de Trámite</span>
+                    <span class="meta-label">N° de trámite</span>
                     <span class="meta-value" id="tramite-id">CEM-2026-0001</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Fecha de Registro</span>
-                    <span class="meta-value" id="fecha-registro">16/06/2026</span>
+                    <span class="meta-label">Fecha de registro</span>
+                    <span class="meta-value" id="fecha-registro">18/06/2026</span>
                 </div>
             </div>
         </div>
 
-        <!-- Form Body -->
-        <form class="form-body" onsubmit="event.preventDefault(); alert('Formulario enviado correctamente.');">
-            <!-- Sección: Datos del Deceso -->
+        <!-- Form -->
+        <form class="form-body" id="form-cementerio" onsubmit="enviarFormulario(event)">
+
+            <!-- Sección 1: Datos del deceso -->
             <div class="section">
                 <div class="section-title">
-                    <span class="section-icon">🕊️</span>
-                    Datos del Deceso
+                    <span class="section-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                    </span>
+                    Datos del deceso
                 </div>
                 <div class="form-grid">
                     <div class="form-group">
@@ -428,20 +513,20 @@
                         <input type="text" id="dni-deceso" name="dni_deceso" placeholder="Ej: 25.456.789" pattern="[0-9.\-]*">
                     </div>
                     <div class="form-group">
-                        <label for="fecha-nacimiento">Fecha de Nacimiento</label>
+                        <label for="fecha-nacimiento">Fecha de nacimiento</label>
                         <input type="date" id="fecha-nacimiento" name="fecha_nacimiento">
                     </div>
                     <div class="form-group full-width">
-                        <label for="fecha-ingreso">Fecha de Ingreso <span class="required">*</span></label>
+                        <label for="fecha-ingreso">Fecha de ingreso <span class="required">*</span></label>
                         <input type="date" id="fecha-ingreso" name="fecha_ingreso" required>
                         <span class="input-hint">Fecha en que se realiza el ingreso al cementerio municipal.</span>
                     </div>
                     <div class="form-group">
-                        <label for="hora-ingreso">Hora de Ingreso</label>
+                        <label for="hora-ingreso">Hora de ingreso</label>
                         <input type="time" id="hora-ingreso" name="hora_ingreso">
                     </div>
                     <div class="form-group">
-                        <label for="tipo-servicio">Tipo de Servicio</label>
+                        <label for="tipo-servicio">Tipo de servicio</label>
                         <select id="tipo-servicio" name="tipo_servicio">
                             <option value="" disabled selected>Seleccionar...</option>
                             <option value="inhumacion">Inhumación</option>
@@ -453,10 +538,12 @@
                 </div>
             </div>
 
-            <!-- Sección: Datos del Solicitante -->
+            <!-- Sección 2: Datos de quien registra -->
             <div class="section">
                 <div class="section-title">
-                    <span class="section-icon">👤</span>
+                    <span class="section-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </span>
                     Datos de quien registra el trámite
                 </div>
                 <div class="form-grid">
@@ -478,7 +565,7 @@
                     </div>
                     <div class="form-group full-width">
                         <label for="parentesco">Parentesco o relación con el deceso</label>
-                        <input type="text" id="parentesco" name="parentesco" placeholder="Ej: Esposa, Hijo, Hermano, etc.">
+                        <input type="text" id="parentesco" name="parentesco" placeholder="Ej: Esposa, Hijo, Hermano...">
                     </div>
                 </div>
             </div>
@@ -493,34 +580,165 @@
                     </label>
                 </div>
             </div>
+
         </form>
 
-        <!-- Footer Actions -->
+        <!-- Footer -->
         <div class="form-footer">
-            <button type="button" class="btn btn-secondary" onclick="document.querySelector('form').reset();">
-                🔄 Limpiar formulario
+            <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                Limpiar
             </button>
             <div class="footer-info">
                 <strong>CEM</strong> — Centro Estadístico Municipal<br>
                 Municipalidad de Esquina, Corrientes
             </div>
-            <button type="submit" class="btn btn-primary" onclick="document.querySelector('form').dispatchEvent(new Event('submit'))">
-                ✅ Registrar trámite
+            <button type="submit" form="form-cementerio" class="btn btn-primary" id="btn-submit">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>
+                Registrar trámite
             </button>
         </div>
     </div>
 
-    <script>
-        // Auto-fill fecha de registro
-        const today = new Date();
-        document.getElementById('fecha-registro').textContent = today.toLocaleDateString('es-AR', {
-            day: '2-digit', month: '2-digit', year: 'numeric'
-        });
+    <!-- Overlay de envío -->
+    <div class="submit-overlay" id="overlay">
+        <div class="submit-card" id="overlay-card">
+            <div class="spinner" id="spinner"></div>
+            <div class="overlay-icon" id="overlay-icon" style="display:none"></div>
+            <h2 id="overlay-title">Registrando trámite…</h2>
+            <p id="overlay-msg">Por favor esperá unos segundos.</p>
+        </div>
+    </div>
 
-        // Auto-generate tramite ID
-        const year = today.getFullYear();
-        const random = String(Math.floor(Math.random() * 9000) + 1000);
-        document.getElementById('tramite-id').textContent = `CEM-${year}-${random}`;
+    <script>
+        // ─── CONFIGURACIÓN ───────────────────────────────────────────────────
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbypvrS72GiDAIsQBrQwG44a4bxwng47ICTOvRlLFL_NnVcrkO2acuuuzhq-CWSWwImL/exec';
+        // ─────────────────────────────────────────────────────────────────────
+
+        let tramiteId;
+
+        function generarTramiteId() {
+            const year = new Date().getFullYear();
+            const random = String(Math.floor(Math.random() * 9000) + 1000);
+            return `CEM-${year}-${random}`;
+        }
+
+        function init() {
+            const today = new Date();
+            const fechaStr = today.toLocaleDateString('es-AR', {
+                day: '2-digit', month: '2-digit', year: 'numeric'
+            });
+            document.getElementById('fecha-registro').textContent = fechaStr;
+            tramiteId = generarTramiteId();
+            document.getElementById('tramite-id').textContent = tramiteId;
+        }
+
+        init();
+
+        function limpiarFormulario() {
+            document.getElementById('form-cementerio').reset();
+            tramiteId = generarTramiteId();
+            document.getElementById('tramite-id').textContent = tramiteId;
+        }
+
+        async function enviarFormulario(event) {
+            event.preventDefault();
+            const form = document.getElementById('form-cementerio');
+            if (!form.checkValidity()) { form.reportValidity(); return; }
+
+            mostrarOverlay('enviando');
+            document.getElementById('btn-submit').disabled = true;
+
+            const today = new Date();
+            const fechaStr = today.toLocaleDateString('es-AR', {
+                day: '2-digit', month: '2-digit', year: 'numeric'
+            });
+
+            const payload = {
+                tramite_id:           tramiteId,
+                fecha_registro:       fechaStr,
+                nombre_deceso:        form.nombre_deceso.value.trim(),
+                apellido_deceso:      form.apellido_deceso.value.trim(),
+                dni_deceso:           form.dni_deceso.value.trim(),
+                fecha_nacimiento:     form.fecha_nacimiento.value,
+                fecha_ingreso:        form.fecha_ingreso.value,
+                hora_ingreso:         form.hora_ingreso.value,
+                tipo_servicio:        form.tipo_servicio.value,
+                nombre_solicitante:   form.nombre_solicitante.value.trim(),
+                apellido_solicitante: form.apellido_solicitante.value.trim(),
+                dni_solicitante:      form.dni_solicitante.value.trim(),
+                telefono_solicitante: form.telefono_solicitante.value.trim(),
+                parentesco:           form.parentesco.value.trim()
+            };
+
+            try {
+                const res = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: JSON.stringify(payload)
+                });
+                const json = await res.json();
+
+                if (json.ok) {
+                    mostrarOverlay('ok');
+                    setTimeout(() => {
+                        cerrarOverlay();
+                        limpiarFormulario();
+                        document.getElementById('btn-submit').disabled = false;
+                    }, 3200);
+                } else {
+                    throw new Error(json.error || 'Respuesta inesperada del servidor');
+                }
+            } catch (err) {
+                console.error('Error al enviar:', err);
+                mostrarOverlay('error', err.message);
+                document.getElementById('btn-submit').disabled = false;
+            }
+        }
+
+        function mostrarOverlay(estado, detalle) {
+            const overlay  = document.getElementById('overlay');
+            const spinner  = document.getElementById('spinner');
+            const iconEl   = document.getElementById('overlay-icon');
+            const title    = document.getElementById('overlay-title');
+            const msg      = document.getElementById('overlay-msg');
+
+            overlay.classList.add('active');
+
+            if (estado === 'enviando') {
+                spinner.style.display = 'block';
+                iconEl.style.display  = 'none';
+                title.textContent = 'Registrando trámite…';
+                msg.textContent   = 'Por favor esperá unos segundos.';
+
+            } else if (estado === 'ok') {
+                spinner.style.display = 'none';
+                iconEl.style.display  = 'flex';
+                iconEl.className = 'overlay-icon ok';
+                iconEl.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><polyline points="20 6 9 17 4 12"/></svg>`;
+                title.textContent = 'Trámite registrado';
+                msg.innerHTML = `El ingreso fue guardado correctamente en el sistema.<br>
+                    <span class="tramite-confirmado">${tramiteId}</span>`;
+
+            } else if (estado === 'error') {
+                spinner.style.display = 'none';
+                iconEl.style.display  = 'flex';
+                iconEl.className = 'overlay-icon error';
+                iconEl.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
+                title.textContent = 'Error al enviar';
+                msg.innerHTML = `No se pudo guardar el registro.<br>
+                    <small style="color:var(--cem-error);display:block;margin-top:6px">${detalle || 'Revisá la conexión.'}</small>
+                    <button class="btn btn-primary" onclick="cerrarOverlay()" style="margin-top:16px;width:100%;justify-content:center">Volver al formulario</button>`;
+            }
+        }
+
+        function cerrarOverlay() {
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        document.getElementById('overlay').addEventListener('click', function(e) {
+            if (e.target === this) cerrarOverlay();
+        });
     </script>
 </body>
 </html>
